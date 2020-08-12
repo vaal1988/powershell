@@ -1,4 +1,4 @@
-# uninstall MSI
+# uninstall
 
     Get-Process -Name "teamviewer*" | Stop-Process -Force
     $app = Get-WmiObject -Class Win32_Product | Where {$_.Name -like "*TeamViewer*" }
