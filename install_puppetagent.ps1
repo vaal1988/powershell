@@ -1,8 +1,7 @@
-param
-(
-  [string]$PUPPET_MASTER_SERVER = "puppet",
-  [string]$PUPPET_AGENT_ENVIRONMENT = "environment"
-)
+# param (
+#   [string]$PUPPET_MASTER_SERVER = "puppet",
+#   [string]$PUPPET_AGENT_ENVIRONMENT = "environment"
+# )
 
 $WORKSTATION_FQDN = (Get-WmiObject win32_computersystem).DNSHostName+"."+(Get-WmiObject win32_computersystem).Domain
 $PUPPET_AGENT_CERTNAME = $WORKSTATION_FQDN.ToLower()
