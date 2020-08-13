@@ -21,6 +21,16 @@ If ((get-service wuauserv).starttype -ieq 'Disabled')
 }
 
 
+
+
+
+
+
+
+if (!(Test-Path C:\install)) { 
+  New-Item -ItemType Directory -Force -Path C:\install 
+}
+
 ## updating dotNet
 
 $MinimumNet4Version = 378389
@@ -33,10 +43,6 @@ if ($Net4Version -ge $MinimumNet4Version) {
 else {
   Write-Output ".NET Framework 4.5.2 or later required"
   Write-Output "Installing"
-
-if (!(Test-Path C:\install)) { 
-  New-Item -ItemType Directory -Force -Path C:\install 
-}
 
 # download
 $download_url = "http://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe" 
@@ -79,7 +85,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($download_url, $download_path)
 
-    Expand-ZipFile $download_path -destination c:\install
+    Expand-ZipFile $download_path -destination c:\install\KB3191566
 
   }
 
