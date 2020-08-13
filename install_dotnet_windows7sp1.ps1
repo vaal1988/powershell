@@ -62,47 +62,29 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 
 If ($PSVersionTable.PSVersion.Major -eq 2) {
   Write-Output "PSVersion is 2"
-  
-# https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7-KB3191566-x86.zip
-# https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7AndW2K8R2-KB3191566-x64.zip
 
-}
+  if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {
 
+    $download_url = "https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7AndW2K8R2-KB3191566-x64.zip" 
+    $download_path = "C:\install\Win7AndW2K8R2-KB3191566-x64.zip" 
+    (New-Object Net.WebClient).DownloadFile($download_url, $download_path) 
 
+  } 
 
-switch ($osversionLookup[$osVersion]) {
-"Vista/2008" {
-    Write-Output "PowerShell 3 is the highest supported"
-}
-"Win7/2008R2" {
-    Write-Output "PowerShell 3 is the highest supported"
-}
-"Win7 SP1/2008R2 SP1" {
-    Write-Output "TEST"
-}
+  Else {
 
-"Win8/2012" {
-  if($os.ProductType -gt 1) {
-# 8.1
+    $download_url = "https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7-KB3191566-x86.zip" 
+    $download_path = "C:\install\Win7-KB3191566-x86.zip" 
+    (New-Object Net.WebClient).DownloadFile($download_url, $download_path)
+
   }
-  else {
-# 8
-  }
-}
 
-"Win8.1/2012R2" {
 
 }
 
-"Windows 10/Server 2016" {
 
-}
 
-default {
-# Windows XP, Windows 2003, Windows Vista, or unknown
-}
 
-}
 
 
 
