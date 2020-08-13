@@ -1,5 +1,7 @@
 # powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/vaal1988/powershell/master/install_dotnet_windows7sp1.ps1'))"
 
+
+
 $osVersion = (Get-WmiObject Win32_OperatingSystem).version
 
 if($osVersion -eq '6.1.7600') {
@@ -36,3 +38,40 @@ $download_path = "C:\install\NDP452-KB2901907-x86-x64-AllOS-ENU.exe"
 Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 
 }
+
+
+If ($PSVersionTable.PSVersion.Major -eq 2) {
+  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+}
+
+If ($PSVersionTable.PSVersion.Major -eq 3) {
+  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+}
+
+If ($PSVersionTable.PSVersion.Major -eq 4) {
+  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+}
+
+If ($PSVersionTable.PSVersion.Major -eq 5) {
+  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
