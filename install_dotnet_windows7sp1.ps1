@@ -4,7 +4,7 @@ $MinimumNet4Version = 378389
 $Net4Version = (get-itemproperty "hklm:software\microsoft\net framework setup\ndp\v4\full" -ea silentlycontinue | Select -Expand Release -ea silentlycontinue)
 
 if ($Net4Version -ge $MinimumNet4Version) {
-  throw "dotNET Framework 4.5.2 or later"
+  Write-Output "dotNET Framework 4.5.2 or later"
 }
 
 else {
