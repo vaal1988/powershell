@@ -6,11 +6,11 @@ param (
 $WORKSTATION_FQDN = (Get-WmiObject win32_computersystem).DNSHostName+"."+(Get-WmiObject win32_computersystem).Domain
 $PUPPET_AGENT_CERTNAME = $WORKSTATION_FQDN.ToLower()
 
-$puppetagentx64_download_path = "http://repo.intergal.com.ua/windows/puppet-agent-6.9.0-x64.msi"
+$puppetagentx64_download_path = "https://downloads.puppetlabs.com/windows/puppet6/puppet-agent-6.9.0-x64.msi"
 $puppetagentx64_id = '{CB4C373E-4050-4D9C-AEF4-1CB31DCF31EA}'
 $puppetagentx64_version = '101253120'
 
-$puppetagentx86_download_path = "http://repo.intergal.com.ua/windows/puppet-agent-6.9.0-x86.msi"
+$puppetagentx86_download_path = "https://downloads.puppetlabs.com/windows/puppet6/puppet-agent-6.9.0-x86.msi"
 $puppetagentx86_id = '{5A2953C8-3B15-4898-B09C-FA560F826D54}'
 $puppetagentx86_version = '101253120'
 
