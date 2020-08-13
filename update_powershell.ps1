@@ -54,26 +54,16 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 
 }
 
-
-function UnZip-File($Source, $Destination)
+function Expand-ZIPFile($file, $destination)
 {
-Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction Stop
-$Overwrite = $true
-
-
-if ((Test-Path $Destination) -eq $false) 
-
+$shell = new-object -com shell.application
+$zip = $shell.NameSpace($file)
+foreach($item in $zip.items())
 {
- $null = mkdir $Destination 
+$shell.Namespace($destination).copyhere($item)
+}
 }
 
-$Content = [IO.Compression.ZipFile]::OpenRead($Source).Entries
-$Content | 
- ForEach-Object -Process {
-    $FilePath = Join-Path -Path $Destination -ChildPath $_
-                [IO.Compression.ZipFileExtensions]::ExtractToFile($_,$FilePath,$Overwrite)
-            }
-}
 
 
 If ($PSVersionTable.PSVersion.Major -eq 2) {
@@ -95,7 +85,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $ps_download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
 
-    UnZip-File $ps_download_path -destination c:\install\KB3191566
+    Expand-ZIPFile $ps_download_path -destination c:\install
     
     Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
