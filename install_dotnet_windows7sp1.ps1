@@ -69,6 +69,8 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $download_path = "C:\install\Win7AndW2K8R2-KB3191566-x64.zip" 
     (New-Object Net.WebClient).DownloadFile($download_url, $download_path) 
 
+
+
   } 
 
   Else {
@@ -76,6 +78,9 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $download_url = "https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7-KB3191566-x86.zip" 
     $download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($download_url, $download_path)
+
+    [System.Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
+    [System.IO.Compression.ZipFile]::ExtractToDirectory($download_path, 'C:\install\')
 
   }
 
