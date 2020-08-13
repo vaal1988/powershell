@@ -43,15 +43,6 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 
 }
 
-function Expand-ZIPFile($file, $destination) {
-  $shell = new-object -com shell.application
-  $zip = $shell.NameSpace($file)
-  foreach($item in $zip.items())
-  {
-  $shell.Namespace($destination).copyhere($item)
-  }
-}
-
 ## updating PS
 
 If ($PSVersionTable.PSVersion.Major -eq 2) {
@@ -65,7 +56,13 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $ps_download_url = "https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7AndW2K8R2-KB3191566-x64.zip" 
     $ps_download_path = "C:\install\Win7AndW2K8R2-KB3191566-x64.zip" 
     (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
-    Expand-ZIPFile $ps_download_path -destination C:\install\KB3191566
+    
+    $shell = New-Object -ComObject shell.application
+    $zip = $shell.NameSpace("C:\install\Win7AndW2K8R2-KB3191566-x64.zip")
+    foreach ($item in $zip.items()) {
+      $shell.Namespace("C:\install\KB3191566").CopyHere($item)
+    }    
+    
     Start-Process "C:\install\KB3191566\Win7AndW2K8R2-KB3191566-x64.msu" -Wait -ArgumentList "/quiet /norestart"
 
   } 
@@ -75,7 +72,13 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $ps_download_url = "https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7-KB3191566-x86.zip" 
     $ps_download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
-    Expand-ZIPFile $ps_download_path -destination C:\install\KB3191566
+
+    $shell = New-Object -ComObject shell.application
+    $zip = $shell.NameSpace("C:\install\Win7-KB3191566-x86.zip")
+    foreach ($item in $zip.items()) {
+      $shell.Namespace("C:\install\KB3191566").CopyHere($item)
+    }  
+
     Start-Process "C:\install\KB3191566\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
   }
