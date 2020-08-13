@@ -83,6 +83,5 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
 
   }
 
-  Remove-Item -Path "C:\install\KB3191566" -Recurse
 
 }
