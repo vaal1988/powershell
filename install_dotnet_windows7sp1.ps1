@@ -2,6 +2,10 @@
 
 $osVersion = (Get-WmiObject Win32_OperatingSystem).version
 
+if($osVersion -eq '6.1.7600') {
+   Throw "SP1 must be installed"
+}
+
 if($osVersion -eq '6.1.7601') {
    Write-Output "Windows version - Win7 SP1/2008R2 SP1"
 }else {
