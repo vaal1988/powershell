@@ -18,7 +18,7 @@ if($osVersion -eq '6.1.7601') {
 
 If ((get-service wuauserv).starttype -ieq 'Disabled')
 {
-  Throw "Windows Update Service is disabled - PowerShell updates are distributed as windows updates and so require the service.  Consider temporarily enabling it before calling this package and disabling again afterward."
+  Throw "Windows Update Service is disabled - PowerShell updates are distributed as windows updates and so require the service."
 }
 
 
