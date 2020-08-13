@@ -79,6 +79,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($download_url, $download_path)
 
+    Expand-ZipFile $download_path -destination c:\install
 
   }
 
