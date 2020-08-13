@@ -14,6 +14,23 @@ if($osVersion -eq '6.1.7601') {
    Throw "Script only for  Win7 SP1/2008R2 SP1"
 }
 
+
+
+If ((get-service wuauserv).starttype -ieq 'Disabled')
+{
+  Throw "Windows Update Service is disabled - PowerShell updates are distributed as windows updates and so require the service.  Consider temporarily enabling it before calling this package and disabling again afterward."
+}
+
+
+
+
+
+
+
+
+
+
+
 ## updating dotNet
 
 $MinimumNet4Version = 378389
@@ -42,19 +59,12 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 
 If ($PSVersionTable.PSVersion.Major -eq 2) {
   Write-Output "PSVersion is 2"
+  
+  
+  
 }
 
-If ($PSVersionTable.PSVersion.Major -eq 3) {
-  Write-Output "PSVersion is 3"
-}
 
-If ($PSVersionTable.PSVersion.Major -eq 4) {
-  Write-Output "PSVersion is 4"
-}
-
-If ($PSVersionTable.PSVersion.Major -eq 5) {
-  Write-Output "PSVersion is 5"
-}
 
 
 
