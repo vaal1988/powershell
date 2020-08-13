@@ -41,19 +41,19 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 
 
 If ($PSVersionTable.PSVersion.Major -eq 2) {
-  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+  Write-Output "PSVersion is 2"
 }
 
 If ($PSVersionTable.PSVersion.Major -eq 3) {
-  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+  Write-Output "PSVersion is 3"
 }
 
 If ($PSVersionTable.PSVersion.Major -eq 4) {
-  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+  Write-Output "PSVersion is 4"
 }
 
 If ($PSVersionTable.PSVersion.Major -eq 5) {
-  Write-Output "PSVersion is $PSVersionTable.PSVersion.Major"
+  Write-Output "PSVersion is 5"
 }
 
 
