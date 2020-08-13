@@ -89,10 +89,6 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     
     Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
-    $ps_download_url = "https://download.microsoft.com/download/6/F/5/6F5FF66C-6775-42B0-86C4-47D41F2DA187/Win7AndW2K8R2-KB3191566-x64.zip" 
-    $ps_download_path = "C:\install\Win7AndW2K8R2-KB3191566-x64.zip" 
-    (New-Object Net.WebClient).DownloadFile($download_url, $download_path) 
-
   }
 
 
