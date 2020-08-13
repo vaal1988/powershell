@@ -1,19 +1,8 @@
 # powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/vaal1988/powershell/master/install_dotnet_windows7sp1.ps1'))"
 
 
+
 $osVersion = (Get-WmiObject Win32_OperatingSystem).version
-
-$osversionLookup = @{
-"5.1.2600" = "XP";
-"5.1.3790" = "2003";
-"6.0.6001" = "Vista/2008";
-"6.1.7600" = "Win7/2008R2";
-"6.1.7601" = "Win7 SP1/2008R2 SP1";
-"6.2.9200" = "Win8/2012";
-"6.3.9600" = "Win8.1/2012R2";
-"10.0.*"   = "Windows 10/Server 2016"
-}
-
 
 if($osVersion -eq '6.1.7600') {
    Throw "SP1 must be installed"
@@ -60,6 +49,17 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 }
 
 
+function Expand-ZIPFile($file, $destination)
+  { $shell = new-object -com shell.application
+    $zip = $shell.NameSpace($file)
+
+    foreach($item in $zip.items())
+  {
+    $shell.Namespace($destination).copyhere($item)
+  }
+}
+
+
 If ($PSVersionTable.PSVersion.Major -eq 2) {
   Write-Output "PSVersion is 2"
 
@@ -79,8 +79,6 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($download_url, $download_path)
 
-    [System.Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($download_path, 'C:\install\')
 
   }
 
