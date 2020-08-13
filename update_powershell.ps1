@@ -95,7 +95,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $ps_download_path = "C:\install\Win7-KB3191566-x86.zip" 
     (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
 
-    UnZip-File $ps_download_path -destination c:\install\
+    UnZip-File $ps_download_path -destination c:\install\KB3191566
     
     Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
