@@ -14,6 +14,7 @@ $puppetagentx86_download_path = "https://downloads.puppetlabs.com/windows/puppet
 $puppetagentx86_id = '{5A2953C8-3B15-4898-B09C-FA560F826D54}'
 $puppetagentx86_version = '101253120'
 
+
 if(!(Test-Path C:\install)) { 
   New-Item -ItemType Directory -Force -Path C:\install 
 } 
@@ -30,8 +31,8 @@ certname=$PUPPET_AGENT_CERTNAME"
 
 } 
 
-try     {puppet ssl submit_request }
-catch   {Write-Host "could not submit certificate" }
+try     { puppet ssl submit_request }
+catch   { Write-Host "could not submit certificate" }
 
 if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {
 
