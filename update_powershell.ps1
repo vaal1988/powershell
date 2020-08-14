@@ -56,6 +56,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $ps_download_url = "https://raw.githubusercontent.com/vaal1988/powershell/master/windows7/Win7AndW2K8R2-KB3191566-x64.msu" 
     $ps_download_path = "C:\install\Win7AndW2K8R2-KB3191566-x64.msu" 
     (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
+
     Write-Output "Installing"    
     Start-Process "C:\install\Win7AndW2K8R2-KB3191566-x64.msu" -Wait -ArgumentList "/quiet /norestart"
 
@@ -67,6 +68,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     $ps_download_url = "https://raw.githubusercontent.com/vaal1988/powershell/master/windows7/Win7-KB3191566-x86.msu" 
     $ps_download_path = "C:\install\Win7-KB3191566-x86.msu" 
     (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
+
     Write-Output "Installing"
     Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
