@@ -60,7 +60,7 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
 
   } 
 
-  Else {
+  if ( (Get-WMIObject Win32_OperatingSystem).OSArchitecture -eq "32-bit") {
 
     Write-Output "Downloading"
     $ps_download_url = "https://raw.githubusercontent.com/vaal1988/powershell/master/windows7/Win7-KB3191566-x86.msu" 
@@ -70,6 +70,18 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     Write-Output "Installing"
     Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
-  }
+  } 
+
+  # Else {
+
+  #   Write-Output "Downloading"
+  #   $ps_download_url = "https://raw.githubusercontent.com/vaal1988/powershell/master/windows7/Win7-KB3191566-x86.msu" 
+  #   $ps_download_path = "C:\install\Win7-KB3191566-x86.msu" 
+  #   (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
+
+  #   Write-Output "Installing"
+  #   Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
+
+  # }
 
 }
