@@ -1,5 +1,6 @@
 # powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/vaal1988/powershell/master/update_powershell.ps1'))"
 #
+#
 
 $osVersion = (Get-WmiObject Win32_OperatingSystem).version
 
