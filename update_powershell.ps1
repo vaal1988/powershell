@@ -48,7 +48,7 @@ Start-Process "$download_path" -Wait -ArgumentList "/Quiet /NoRestart"
 If ($PSVersionTable.PSVersion.Major -eq 2) {
   Write-Output "PSVersion is 2"
 
-  if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {
+  if ( (Get-WMIObject Win32_OperatingSystem).OSArchitecture -eq "64-bit") {
 
     Write-Output "Downloading"
     $ps_download_url = "https://raw.githubusercontent.com/vaal1988/powershell/master/windows7/Win7AndW2K8R2-KB3191566-x64.msu" 
