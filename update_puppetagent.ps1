@@ -32,23 +32,20 @@ certname=$PUPPET_AGENT_CERTNAME
 "@
 
 # Write-Host $puppet_conf
-
 # $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
+
 $puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
 
 
-if ( Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet )
-{
+if ( Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) {
   echo "Not Contains True Server"
-  Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value $puppet_conf
+  Set-Content $puppet_conf_file -Value $puppet_conf
 }
-elseif ( Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet )
-{
+elseif ( Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet ) {
   echo "Not Contains True Certname"
-  Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value $puppet_conf
+  Set-Content $puppet_conf_file -Value $puppet_conf
 }
-else
-{
+else {
   echo OK
 }
 
