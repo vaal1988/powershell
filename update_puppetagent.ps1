@@ -31,12 +31,21 @@ environment=$PUPPET_AGENT_ENVIRONMENT
 certname=$PUPPET_AGENT_CERTNAME
 "@
 
-Write-Host $puppet_conf
+# Write-Host $puppet_conf
 
-$puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
+# $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
 
-#If ($puppet_conf_present -eq $puppet_conf ) { Write-Host "It's eq!" } 
-#Else { Write-Host "Not eq!" }
+
+If ( Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf | %{$_ -match "server=$PUPPET_MASTER_SERVER"} ) -or
+( Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf | %{$_ -match "certname=$PUPPET_AGENT_CERTNAME"} )
+
+{
+    echo "Contains String"
+}
+else
+{
+    echo "Not Contains String"
+}
 
 
 
