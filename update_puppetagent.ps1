@@ -36,8 +36,8 @@ certname=$PUPPET_AGENT_CERTNAME
 # $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
 $puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
 
-If ( Get-Content $puppet_conf_file | %{$_ -match "server=$PUPPET_MASTER_SERVER"} ) -or ( Get-Content $puppet_conf_file | %{$_ -match "certname=$PUPPET_AGENT_CERTNAME"} )
-
+If ((Get-Content $puppet_conf_file | %{$_ -match "server=$PUPPET_MASTER_SERVER"}) -or 
+(Get-Content $puppet_conf_file | %{$_ -match "certname=$PUPPET_AGENT_CERTNAME"}))
 {
     echo "Contains String"
 }
