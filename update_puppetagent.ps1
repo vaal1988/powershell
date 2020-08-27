@@ -31,6 +31,8 @@ environment=$PUPPET_AGENT_ENVIRONMENT
 certname=$PUPPET_AGENT_CERTNAME
 "@
 
+Write-Host $puppet_conf
+
 $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf -Raw 
 
 If ($puppet_conf –eq $puppet_conf_present) { Write-Host "It's Equal!" } 
