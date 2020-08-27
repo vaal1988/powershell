@@ -36,17 +36,15 @@ certname=$PUPPET_AGENT_CERTNAME
 # $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
 $puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
 
-IF (-Not ( Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf | %{$_ -match "server=$PUPPET_MASTER_SERVER"} ))
-{
-    echo Not Contains True Server
+
+IF     (-Not ( Get-Content $puppet_conf_file | %{$_ -match "server=$PUPPET_MASTER_SERVER"} )) {
+  echo Not Contains True Server
 }
-ElseIF (-Not ( Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf | %{$_ -match "certname=$PUPPET_AGENT_CERTNAME"} ))
-{
-    echo Not Contains True Certname
+ElseIF (-Not ( Get-Content $puppet_conf_file | %{$_ -match "certname=$PUPPET_AGENT_CERTNAME"} )) {
+  echo Not Contains True Certname
 }
-Else
-{
-    echo OK
+Else {
+  echo OK
 }
 
 
