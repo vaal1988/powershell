@@ -22,14 +22,37 @@ if(!(Test-Path C:\install)) {
 # config
 if(Test-Path C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf) {
 
-Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value "[main]
+$puppet_conf=@"
+[main]
 server=$PUPPET_MASTER_SERVER
 autoflush=true
 manage_internal_file_permissions=false
 environment=$PUPPET_AGENT_ENVIRONMENT
-certname=$PUPPET_AGENT_CERTNAME"
+certname=$PUPPET_AGENT_CERTNAME
+"@
+
+$puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
+
+if (-Not ( Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet )) {
+  echo "Not сontains correct server"
+  Set-Content $puppet_conf_file -Value $puppet_conf
+  Remove-Item -Path "C:\ProgramData\PuppetLabs\puppet\etc\ssl" -Recurse
+  Restart-Service -Name puppet
+}
+elseif (-Not ( Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet )) {
+  echo "Not сontains correct сertname"
+  Set-Content $puppet_conf_file -Value $puppet_conf
+  Remove-Item -Path "C:\ProgramData\PuppetLabs\puppet\etc\ssl" -Recurse
+  Restart-Service -Name puppet
+}
+else {
+  echo OK
+}
+
 
 } 
+
+
 
 try     { puppet ssl submit_request }
 catch   { Write-Host "could not submit certificate" }
