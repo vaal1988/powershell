@@ -33,7 +33,7 @@ certname=$PUPPET_AGENT_CERTNAME
 
 Write-Host $puppet_conf
 
-$puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf -Raw 
+$puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
 
 If ($puppet_conf_present -contains $puppet_conf ) { Write-Host "It's contains!" } 
 Else { Write-Host "Not contains!" }
