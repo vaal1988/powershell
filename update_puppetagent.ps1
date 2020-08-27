@@ -22,14 +22,14 @@ if(!(Test-Path C:\install)) {
 # config
 if(Test-Path C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf) {
 
-$puppet_conf=@"
+$puppet_conf=@'
 [main]
 server=$PUPPET_MASTER_SERVER
 autoflush=true
 manage_internal_file_permissions=false
 environment=$PUPPET_AGENT_ENVIRONMENT
 certname=$PUPPET_AGENT_CERTNAME
-"@
+'@
 
 Write-Host $puppet_conf
 
