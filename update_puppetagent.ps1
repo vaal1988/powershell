@@ -35,8 +35,13 @@ Write-Host $puppet_conf
 
 $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
 
-If ($puppet_conf_present -eq $puppet_conf ) { Write-Host "It's eq!" } 
-Else { Write-Host "Not eq!" }
+#If ($puppet_conf_present -eq $puppet_conf ) { Write-Host "It's eq!" } 
+#Else { Write-Host "Not eq!" }
+
+
+$compare_result = Compare-Object -ReferenceObject "puppet_conf_present" -DifferenceObject "puppet_conf"
+Write-Host $compare_result
+if ( -not $compare_result -eq $null ) { Write-Host "Not eq!" } else { Write-Host "It's eq!" }
 
 
 Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value $puppet_conf
