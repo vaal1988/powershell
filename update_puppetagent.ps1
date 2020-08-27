@@ -22,15 +22,6 @@ if(!(Test-Path C:\install)) {
 # config
 if(Test-Path C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf) {
 
-$puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf
-
-Write-Host ""
-Write-Host "puppet conf:"
-Write-Host $puppet_conf_present
-Write-Host ""
-
-
-
 $puppet_conf=@"
 [main]
 server=$PUPPET_MASTER_SERVER
