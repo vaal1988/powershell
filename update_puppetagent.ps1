@@ -33,15 +33,16 @@ certname=$PUPPET_AGENT_CERTNAME
 
 $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf -Raw 
 
-if ($puppet_conf –eq $puppet_conf_present) { Write-Host "It's Equal!" }
+If ($puppet_conf –eq $puppet_conf_present) { Write-Host "It's Equal!" } 
+Else { Write-Host "Not Equal!" }
 
 
-#Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value "[main]
-#server=$PUPPET_MASTER_SERVER
-#autoflush=true
-#manage_internal_file_permissions=false
-#environment=$PUPPET_AGENT_ENVIRONMENT
-#certname=$PUPPET_AGENT_CERTNAME"
+Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value "[main]
+server=$PUPPET_MASTER_SERVER
+autoflush=true
+manage_internal_file_permissions=false
+environment=$PUPPET_AGENT_ENVIRONMENT
+certname=$PUPPET_AGENT_CERTNAME"
 
 } 
 
