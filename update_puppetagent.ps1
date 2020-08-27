@@ -35,8 +35,8 @@ Write-Host $puppet_conf
 
 $puppet_conf_present = Get-Content C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf -Raw 
 
-If ($puppet_conf –eq $puppet_conf_present) { Write-Host "It's Equal!" } 
-Else { Write-Host "Not Equal!" }
+If ($puppet_conf_present -contains $puppet_conf ) { Write-Host "It's contains!" } 
+Else { Write-Host "Not contains!" }
 
 
 Set-Content "C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf" -Value $puppet_conf
