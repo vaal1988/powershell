@@ -15,34 +15,6 @@ $puppetagentx86_id = '{5A2953C8-3B15-4898-B09C-FA560F826D54}'
 $puppetagentx86_version = '101253120'
 
 
-if(!(Test-Path C:\install)) { 
-  New-Item -ItemType Directory -Force -Path C:\install 
-} 
-
-# config
-if(Test-Path C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf) {
-
-
-puppet config set server puppet.intergal-bud.com.ua --section master
-puppet config set certname $WORKSTATION_FQDN --section master
-puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section master
-
-
-$puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
-
-if ( Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) -And (
-Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) -And (
-Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet ) {
-  
-  echo OK
-
-} else {
-puppet config set server puppet.intergal-bud.com.ua --section master
-puppet config set certname $WORKSTATION_FQDN --section master
-puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section master
-}
-}
-
 try     { puppet ssl submit_request }
 catch   { Write-Host "could not submit certificate" }
 
@@ -89,3 +61,23 @@ Else {
     msiexec /qn /norestart /i C:\install\puppetagent-x86.msi PUPPET_MASTER_SERVER=$PUPPET_MASTER_SERVER PUPPET_AGENT_CERTNAME=$PUPPET_AGENT_CERTNAME PUPPET_AGENT_ENVIRONMENT=$PUPPET_AGENT_ENVIRONMENT
     }
 }
+
+# config
+puppet config set server puppet.intergal-bud.com.ua --section master
+puppet config set certname $WORKSTATION_FQDN --section master
+puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section master
+
+$puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
+
+if ( Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) -And (
+Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) -And (
+Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet ) {
+  
+  echo OK
+
+} else {
+puppet config set server puppet.intergal-bud.com.ua --section master
+puppet config set certname $WORKSTATION_FQDN --section master
+puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section master
+}
+
