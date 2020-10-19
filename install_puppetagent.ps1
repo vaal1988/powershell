@@ -14,10 +14,6 @@ $puppetagentx86_download_path = "https://downloads.puppetlabs.com/windows/puppet
 $puppetagentx86_id = '{5A2953C8-3B15-4898-B09C-FA560F826D54}'
 $puppetagentx86_version = '101253120'
 
-
-try     { puppet ssl submit_request }
-catch   { Write-Host "could not submit certificate" }
-
 if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {
 
     write-host "system is 64 bit"
@@ -62,22 +58,18 @@ Else {
     }
 }
 
+$puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
+
+if ( Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet ) {
+  echo "certname OK"
+} else {
+  puppet ssl clean
+}
+
 # config
 puppet config set server puppet.intergal-bud.com.ua --section master
 puppet config set certname $WORKSTATION_FQDN --section master
 puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section master
 
-$puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
-
-if ( Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) -And (
-Select-String -Path $puppet_conf_file -Pattern "server=$PUPPET_MASTER_SERVER" -SimpleMatch -Quiet ) -And (
-Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet ) {
-  
-  echo OK
-
-} else {
-puppet config set server puppet.intergal-bud.com.ua --section master
-puppet config set certname $WORKSTATION_FQDN --section master
-puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section master
-}
-
+try     { puppet ssl submit_request }
+catch   { Write-Host "could not submit certificate" }
