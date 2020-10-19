@@ -63,6 +63,7 @@ $puppet_conf_file = 'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf'
 if ( Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERTNAME" -SimpleMatch -Quiet ) {
   echo "certname OK"
 } else {
+  echo "puppet ssl clean"
   puppet ssl clean
 }
 
