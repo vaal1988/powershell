@@ -2,7 +2,7 @@
 
 Invoke-Command -ScriptBlock { puppet agent -t } | Tee-Object -Variable PuppetAgentOutput
 
-if ( $PuppetAgentOutput -contains 'Applying configuration') { 
+if ( $PuppetAgentOutput -contains 'Caching catalog') { 
 
 } else {
   puppet ssl clean
