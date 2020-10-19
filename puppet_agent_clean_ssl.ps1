@@ -2,7 +2,8 @@
 
 try { 
   puppet agent -t
-} catch { 
+} catch {
+  echo "ssl clean"
   puppet ssl clean
   puppet agent -t
 }
