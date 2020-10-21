@@ -5,6 +5,9 @@ param (
    [string]$PUPPET_AGENT_ENVIRONMENT = "environment"
 )
 
+if (!(Test-Path C:\install)) { 
+  New-Item -ItemType Directory -Force -Path C:\install 
+}
 
 $WORKSTATION_FQDN = (Get-WmiObject win32_computersystem).DNSHostName+"."+(Get-WmiObject win32_computersystem).Domain
 $PUPPET_AGENT_CERTNAME = $WORKSTATION_FQDN.ToLower()
