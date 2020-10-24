@@ -13,6 +13,7 @@
   <Settings>
     <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
     <StopIfGoingOnBatteries>true</StopIfGoingOnBatteries>
+    <WakeToRun>true</WakeToRun>
     <ExecutionTimeLimit>P1D</ExecutionTimeLimit>
     <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
     <RunOnlyIfNetworkAvailable>true</RunOnlyIfNetworkAvailable>
