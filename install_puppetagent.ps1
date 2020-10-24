@@ -38,7 +38,7 @@ if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {
     $WebClient.DownloadFile("$puppetagentx64_download_path","C:\install\puppetagent-x64.msi")
 
     Write-Host "trying to install"
-    msiexec /qn /norestart /i C:\install\puppetagent-x64.msi PUPPET_MASTER_SERVER=$PUPPET_MASTER_SERVER PUPPET_AGENT_CERTNAME=$PUPPET_AGENT_CERTNAME PUPPET_AGENT_ENVIRONMENT=$PUPPET_AGENT_ENVIRONMENT
+    Start-Process msiexec.exe -Wait -ArgumentList "/qn /norestart /i C:\install\puppetagent-x64.msi PUPPET_MASTER_SERVER=$PUPPET_MASTER_SERVER PUPPET_AGENT_CERTNAME=$PUPPET_AGENT_CERTNAME PUPPET_AGENT_ENVIRONMENT=$PUPPET_AGENT_ENVIRONMENT"
     }
 } 
 
@@ -60,7 +60,7 @@ Else {
     $WebClient.DownloadFile("$puppetagentx86_download_path","C:\install\puppetagent-x86.msi")
 
     Write-Host "trying to install"
-    msiexec /qn /norestart /i C:\install\puppetagent-x86.msi PUPPET_MASTER_SERVER=$PUPPET_MASTER_SERVER PUPPET_AGENT_CERTNAME=$PUPPET_AGENT_CERTNAME PUPPET_AGENT_ENVIRONMENT=$PUPPET_AGENT_ENVIRONMENT
+    Start-Process msiexec.exe -Wait -ArgumentList "/qn /norestart /i C:\install\puppetagent-x86.msi PUPPET_MASTER_SERVER=$PUPPET_MASTER_SERVER PUPPET_AGENT_CERTNAME=$PUPPET_AGENT_CERTNAME PUPPET_AGENT_ENVIRONMENT=$PUPPET_AGENT_ENVIRONMENT"
     }
 }
 
