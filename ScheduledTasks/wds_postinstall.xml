@@ -33,7 +33,7 @@
   <Actions Context="Author">
     <Exec>
       <Command>powershell.exe</Command>
-      <Arguments>-NoProfile -ExecutionPolicy Bypass -Command '& ([scriptblock]::Create((irm https://raw.githubusercontent.com/vaal1988/powershell/master/install_puppetagent.ps1)))'</Arguments>
+      <Arguments>-NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/vaal1988/powershell/master/install_puppetagent.ps1'))"</Arguments>
     </Exec>
   </Actions>
 </Task>
