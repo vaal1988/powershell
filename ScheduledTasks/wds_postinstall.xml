@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
-    <Author>DESKTOP-E2Q1KE3\vaal</Author>
+    <Author>DESKTOP-E2Q1KE3\Admin</Author>
     <URI>\install_puppet_agent</URI>
   </RegistrationInfo>
   <Principals>
