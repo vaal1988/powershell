@@ -80,3 +80,5 @@ puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section main
 
 try     { puppet ssl submit_request }
 catch   { Write-Host "could not submit certificate" }
+
+puppet agent -t
