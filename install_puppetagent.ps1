@@ -74,7 +74,7 @@ if ( Select-String -Path $puppet_conf_file -Pattern "certname=$PUPPET_AGENT_CERT
 }
 
 # config
-puppet config set server puppet.intergal-bud.com.ua --section main
+puppet config set server $PUPPET_MASTER_SERVER --section main
 puppet config set certname $PUPPET_AGENT_CERTNAME --section main
 puppet config set environment $PUPPET_AGENT_ENVIRONMENT --section main
 
