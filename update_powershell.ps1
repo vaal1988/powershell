@@ -9,11 +9,6 @@ if($osVersion -eq '6.1.7601') {
   Throw "Script only for  Win7 SP1/2008R2 SP1"
 }
 
-# If ((get-service wuauserv).starttype -ieq 'Disabled')
-# {
-#   Throw "Windows Update Service is disabled - PowerShell updates are distributed as windows updates and so require the service."
-# }
-
 
 
 if (!(Test-Path C:\install)) { 
@@ -71,17 +66,5 @@ If ($PSVersionTable.PSVersion.Major -eq 2) {
     Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
 
   } 
-
-  # Else {
-
-  #   Write-Output "Downloading"
-  #   $ps_download_url = "https://raw.githubusercontent.com/vaal1988/powershell/master/windows7/Win7-KB3191566-x86.msu" 
-  #   $ps_download_path = "C:\install\Win7-KB3191566-x86.msu" 
-  #   (New-Object Net.WebClient).DownloadFile($ps_download_url, $ps_download_path)
-
-  #   Write-Output "Installing"
-  #   Start-Process "C:\install\Win7-KB3191566-x86.msu" -Wait -ArgumentList "/quiet /norestart"
-
-  # }
 
 }
