@@ -1,4 +1,4 @@
-# powershelд -NoProfile -ExecutionPolicy Bypass -Command '& ([scriptblock]::Create((irm https://raw.githubusercontent.com/vaal1988/powershell/master/install_puppetagent.ps1))) puppet environment'
+# powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/vaal1988/powershell/master/install_puppetagent.ps1))) puppet environment"
 
 param (
    [string]$PUPPET_MASTER_SERVER = "puppet",
