@@ -21,7 +21,7 @@ $puppetagentx86_id = '{5A2953C8-3B15-4898-B09C-FA560F826D54}'
 $puppetagentx86_version = '101253120'
 
 
-Get-ChildItem -Path C:\Temp -Include *.* -Recurse | foreach { $_.Delete()}
+Get-ChildItem -Path C:\ProgramData\PuppetLabs\facter\facts.d -Include *.* -Recurse | foreach { $_.Delete()}
 
 
 if ($env:PROCESSOR_ARCHITECTURE -eq "amd64") {
