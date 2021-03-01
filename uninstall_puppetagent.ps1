@@ -1,0 +1,2 @@
+echo "Uninstalling puppet agent"
+
