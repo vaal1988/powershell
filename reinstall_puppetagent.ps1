@@ -16,10 +16,9 @@ Remove-Item -Path "C:\puppet-agent_x64.msi"
 
 Set-Content -Path C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf -Value '
 [main]
-server=puppet.intergal-bud.com.ua
+server=puppet
 autoflush=true
 manage_internal_file_permissions=false
-environment=IG_windows_workstation
+environment=environment
 '
-
 Restart-Service -Name 'puppet'
