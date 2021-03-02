@@ -11,6 +11,8 @@ Get-ChildItem -Path C:\ProgramData\PuppetLabs\facter\facts.d -Include * -File -R
 $app = Get-WmiObject -Class Win32_Product | Where {$_.Name -like "*Puppet Agent*" }
 $app.Uninstall()
 
+echo "Downloading puppet agent"
+
 $WebClient = New-Object System.Net.WebClient
 $puppetagentx64_download_path = "https://downloads.puppetlabs.com/windows/puppet6/puppet-agent-6.9.0-x64.msi"
 $WebClient.DownloadFile("$puppetagentx64_download_path","C:\puppet-agent_x64.msi")
