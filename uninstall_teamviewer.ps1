@@ -1,4 +1,6 @@
 # uninstall
+#  powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/vaal1988/powershell/master/uninstall_teamviewer.ps1))) puppet environment"
+
 
     Get-Process -Name "teamviewer*" | Stop-Process -Force
     $app = Get-WmiObject -Class Win32_Product | Where {$_.Name -like "*TeamViewer*" }
