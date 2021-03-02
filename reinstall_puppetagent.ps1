@@ -1,17 +1,11 @@
-echo "Uninstalling puppet agent"
-
 Stop-Service -Name 'puppet'
 
 puppet ssl clean
-
 Remove-Item -Path "C:\ProgramData\PuppetLabs\puppet\etc" -Recurse 
-
 Get-ChildItem -Path C:\ProgramData\PuppetLabs\facter\facts.d -Include * -File -Recurse | foreach { $_.Delete()}
 
 $app = Get-WmiObject -Class Win32_Product | Where {$_.Name -like "*Puppet Agent*" }
 $app.Uninstall()
-
-echo "Downloading puppet agent"
 
 $WebClient = New-Object System.Net.WebClient
 $puppetagentx64_download_path = "https://downloads.puppetlabs.com/windows/puppet6/puppet-agent-6.9.0-x64.msi"
@@ -28,4 +22,5 @@ autoflush=true
 manage_internal_file_permissions=false
 environment=IG_windows_workstation
 '
+
 Restart-Service -Name 'puppet'
