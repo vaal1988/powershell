@@ -1,7 +1,6 @@
 Stop-Service -Name 'puppet'
 
 puppet ssl clean
-Remove-Item -Path "C:\ProgramData\PuppetLabs\puppet\etc" -Recurse 
 Get-ChildItem -Path C:\ProgramData\PuppetLabs\facter\facts.d -Include * -File -Recurse | foreach { $_.Delete()}
 
 $app = Get-WmiObject -Class Win32_Product | Where {$_.Name -like "*Puppet Agent*" }
