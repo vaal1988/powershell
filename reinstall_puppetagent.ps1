@@ -28,3 +28,4 @@ autoflush=true
 manage_internal_file_permissions=false
 environment=IG_windows_workstation
 '
+Restart-Service -Name 'puppet'
