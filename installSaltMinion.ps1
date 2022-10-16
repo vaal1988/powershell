@@ -1,4 +1,4 @@
-# powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm 'https://gitlab.com/vgusachenko/salt-master/-/raw/main/salt/windows_desktops/states/minion/installSaltMinion.ps1'))) 192.168.56.15 windows_desktops"
+# powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm 'https://raw.githubusercontent.com/vaal1988/powershell/master/installSaltMinion.ps1'))) 192.168.56.15 windows_desktops"
 
 param (
    [string]$SALT_MASTER_SERVER = "192.168.56.15",
